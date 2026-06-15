@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今天吃什么</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="decision-panel" aria-labelledby="app-title">
+        <div class="title-row">
+          <div>
+            <p class="eyebrow">Eat What</p>
+            <h1 id="app-title">今天吃什么</h1>
+          </div>
+          <button class="ghost-button" id="resetButton" type="button">重置数据</button>
+        </div>
+
+        <form class="filters" id="filterForm">
+          <label>
+            地域
+            <select id="regionFilter" name="region"></select>
+          </label>
+          <label>
+            种类
+            <select id="categoryFilter" name="category"></select>
+          </label>
+          <button class="primary-button" id="pickButton" type="button">开始挑选</button>
+        </form>
+      </section>
+
+      <section class="candidate-panel" aria-labelledby="candidate-title">
+        <div class="section-header">
+          <div>
+            <h2 id="candidate-title">候选选项</h2>
+            <p>点击“开始挑选”后，高光会在下面的方块中跳动。</p>
+          </div>
+          <div class="header-actions">
+            <span id="candidateCount">0 家</span>
+            <button class="ghost-button compact-button" id="manageButton" type="button">餐厅管理</button>
+          </div>
+        </div>
+        <div class="candidate-grid" id="candidateList"></div>
+      </section>
+    </main>
+
+    <dialog class="manage-dialog" id="manageDialog">
+      <div class="dialog-card manage-card">
+        <button class="dialog-close" id="manageClose" type="button" aria-label="关闭">×</button>
+        <span class="result-label">餐厅管理</span>
+        <h2>新增与删除</h2>
+        <p class="storage-note" id="storageNote">新增和删除会自动保存到当前浏览器本地。</p>
+        <form class="restaurant-form" id="restaurantForm">
+          <label>
+            餐厅名称
+            <input id="restaurantName" name="name" type="text" maxlength="32" required placeholder="例如：川味小馆" />
+          </label>
+          <label>
+            地域标签
+            <input id="restaurantRegion" name="region" type="text" maxlength="16" required placeholder="例如：公司附近" />
+          </label>
+          <label>
+            种类标签
+            <input id="restaurantCategory" name="category" type="text" maxlength="16" required placeholder="例如：川菜" />
+          </label>
+          <button class="secondary-button" type="submit">添加餐厅</button>
+        </form>
+        <p class="form-message" id="formMessage" aria-live="polite"></p>
+        <div class="manage-list" id="manageList"></div>
+      </div>
+    </dialog>
+
+    <dialog class="result-dialog" id="resultDialog">
+      <div class="dialog-card">
+        <button class="dialog-close" id="dialogClose" type="button" aria-label="关闭">×</button>
+        <span class="result-label">最终结果</span>
+        <h2 id="resultName">今天就吃这家</h2>
+        <dl class="restaurant-details">
+          <div>
+            <dt>地域</dt>
+            <dd id="resultRegion"></dd>
+          </div>
+          <div>
+            <dt>种类</dt>
+            <dd id="resultCategory"></dd>
+          </div>
+          <div>
+            <dt>候选范围</dt>
+            <dd id="resultPool"></dd>
+          </div>
+        </dl>
+      </div>
+    </dialog>
+
+    <script src="data/restaurants.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
